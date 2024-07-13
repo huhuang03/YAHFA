@@ -24,7 +24,8 @@ public class MainActivity extends Activity {
                 try {
                     Method hook = Hook_Log_e.class.getDeclaredMethod("hook", String.class, String.class);
                     Method backup = Hook_Log_e.class.getDeclaredMethod("backup", String.class, String.class);
-                    HookMain.findAndBackupAndHook(Log.class, Hook_Log_e.methodName, Hook_Log_e.methodSig, hook, backup);
+//                    HookMain.findAndBackupAndHook(Log.class, Hook_Log_e.methodName, Hook_Log_e.methodSig, hook, backup);
+                    HookMain.findAndBackupAndHook(Log.class, "i", Hook_Log_e.methodSig, hook, backup);
                 } catch (NoSuchMethodException e) {
                     e.printStackTrace();
                 }
@@ -43,6 +44,7 @@ public class MainActivity extends Activity {
     }
 
     void doWork() {
+        Log.i(TAG, "haha");
         // Log.e() should be hooked
         Log.e(TAG, "call Log.e()");
         // String.startsWith() should be hooked
